@@ -1,0 +1,56 @@
+<div class="grid md:grid-cols-[70%_minmax(0,1fr)] ">
+    <div>
+        <owl-carousel-o [options]="custommain">
+            <ng-template carouselSlide><img src="/Images/images/img1.avif"  class="w-full h-[300px]" alt=""></ng-template>  
+            <ng-template carouselSlide><img src="/Images/images/img2.avif"  class="w-full h-[300px]" alt=""></ng-template>  
+            <ng-template carouselSlide><img src="/Images/images/img3.avif"  class="w-full h-[300px]" alt=""></ng-template>  
+          </owl-carousel-o>
+        
+    </div> 
+    <div>
+        <img src="/Images/images/grocery-banner.png" class="w-full h-[150px]" alt="">
+        <img src="/Images/images/grocery-banner-2.jpeg" class="w-full h-[150px]" alt="">
+    </div>
+
+</div>
+
+<!-- Second Carousel -->
+<div class="w-11/12 gap-2 mx-auto my-5">
+    <owl-carousel-o [options]="customOptions">
+        @for (item of categoriesList; track $index) {
+        <ng-container>
+            <ng-template carouselSlide>
+                <img class="h-[300px]" [src]="item.image">
+                <p class="text-center">{{ item.name }}</p>
+            </ng-template>
+        </ng-container>
+        }
+    </owl-carousel-o>
+</div>
+
+<div class="w-1/2 mx-auto my-6">
+    <div class="relative">
+        <div class="absolute inset-y-0 flex items-center pointer-events-none start-0 ps-3">
+            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="none" viewBox="0 0 20 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+            </svg>
+        </div>
+        <input [(ngModel)]="search" type="search" id="default-search"
+            class="w-full p-4 mx-auto text-sm text-gray-900 border border-gray-300 rounded-lg ps-10 bg-gray-50 focus:ring-green-500 focus:border-green-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Search In Our Brands" required />
+
+    </div>
+</div>
+
+
+<div class="grid gap-8 mx-auto my-5 sm:grid-cols-2 lg:grid-cols-6 xl:grid-cols-4 ">
+
+
+
+
+    @for (product of allproducts | serchPipe :search; track product._id) {
+    <app-card-products [product]="product"></app-card-products>
+    }
+</div>

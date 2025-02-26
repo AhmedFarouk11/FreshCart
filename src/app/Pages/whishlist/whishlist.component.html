@@ -1,0 +1,50 @@
+<div class="relative my-5 overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full mx-auto text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
+        <thead class="">
+            <tr
+                class="flex items-center justify-between w-full bg-gray-200 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700-50 dark:hover:bg-gray-600l">
+                <th class="grid-cols-5 col-span-5 px-6 py-3 text-2xl font-semibold text-black">
+                    Your whish List <span class="text-red-600"><i class="fa-solid fa-heart"></i></span> </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <div class="bg-gray-200">
+
+
+                @for (wshislist of UserWhishlist; track $index) {
+
+
+                <tr
+                    class="flex items-center justify-between w-full bg-gray-200 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 border-b-gray-300">
+                    <td class="flex items-center p-2 ">
+                        <img [src]="wshislist.imageCover" class=" h-[150px] object-contain w-[150pxpx]" alt="Apple Watch">
+                        <div class="flex flex-col ms-4">
+                            <p class="w-full text-2xl font-bold text-black">{{wshislist.title}}</p>
+                            <p class="w-full text-xl font-semibold text-black">{{wshislist.price}} EGP</p>
+                            <a (click)="RemoveProduct(wshislist._id)"
+                                class="w-full font-medium text-red-600 cursor-pointer dark:text-red-500 hover:underline">
+                                Remove <i class="fa-solid fa-trash-can"></i></a>
+                        </div>
+
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center">
+                            <button (click)="Addtocart(wshislist._id)"
+                                class="flex items-center p-2 my-5 text-xl font-light text-black transition-all duration-700 bg-transparent border border-green-400 rounded-lg cursor-pointer hover:bg-green-600 hover:text-white">
+                                Add Cart <span class="mt-2 text-sm font-light ms-2"><i
+                                        class="fa-solid fa-cart-plus"></i></span></button>
+                        </div>
+                    </td>
+
+                </tr>
+
+                }
+            </div>
+
+        </tbody>
+
+    </table>
+
+</div>

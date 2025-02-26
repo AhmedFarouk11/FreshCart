@@ -1,0 +1,44 @@
+<h1 class="my-5 text-2xl text-center text-green-700">Forget Password</h1>
+@if (step == 1) {<form [formGroup]="vrifyEmail" class="p-3 my-8 bg-gray-200 shadow" (ngSubmit)="verifyEmailSubmit()">
+ 
+    <div class="flex flex-col items-start my-3">
+        <label for="email">Email</label>
+        <input type="email" formControlName="email"
+            class="bg-gray-50 my-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+            placeholder="name@email.com" required />
+        <button [disabled]="vrifyEmail.invalid" 
+            class="w-full p-3 text-white bg-green-600 border border-black rounded-lg hover:bg-green-600 hover:text-white disabled:cursor-not-allowed disabled:bg-green-200">verify</button>
+    </div>
+</form>
+}
+@else if (step == 2) {
+    <form [formGroup]="verifyCode" class="p-3 my-8 bg-gray-200 shadow" (ngSubmit)="verifyCodeSubmit()">
+
+        <div class="flex flex-col items-start my-3">
+            <label for="resetCode">Verify Code</label>
+            <input type="text" formControlName="resetCode"
+                class="bg-gray-50 my-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Code" required />
+            <button [disabled]="verifyCode.invalid" 
+                class="w-full p-3 text-white bg-green-600 border border-black rounded-lg hover:bg-green-600 hover:text-white disabled:cursor-not-allowed disabled:bg-green-200">verify</button>
+        </div>
+    </form>
+}
+
+@else if(step == 3) {
+    <form [formGroup]="resetPassword" class="p-3 my-8 bg-gray-200 shadow" (ngSubmit)="verifynewPassword()">
+ 
+        <div class="flex flex-col items-start my-3">
+            <label for="resetCode">Email</label>
+            <input readonly type="email" formControlName="email"
+                class="bg-gray-50 my-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="name@email.com" required />
+            <label for="resetCode">New Password</label>
+            <input type="password" formControlName="newPassword"
+                class="bg-gray-50 my-5 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                placeholder="Password" required />
+            <button [disabled]="resetPassword.invalid"
+                class="w-full p-3 text-white bg-green-600 border border-black rounded-lg hover:bg-green-600 hover:text-white disabled:cursor-not-allowed disabled:bg-green-200">verify</button>
+        </div>
+    </form>
+}

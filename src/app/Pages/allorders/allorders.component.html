@@ -1,0 +1,80 @@
+<div class="py-2 my-5">
+  <div class="" id="accordion-collapse" data-accordion="collapse">
+    <h2 id="accordion-collapse-heading-1">
+      <button
+        class="w-full gap-3 p-5 font-medium border border-b-0 border-gray-200 bg-slate-100 dark:bg-gray-900 rtl:text-right rounded-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-yellow-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+        data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
+        aria-controls="accordion-collapse-body-1">
+        <h1 class="text-4xl font-medium text-center text-green-500 capitalize">
+          Orders History
+        </h1>
+      </button>
+    </h2>
+  </div>
+  @for (item of MyOrders; track item.id) {
+  <h2>
+    <div
+      class="flex items-center justify-between bg-gray-200 border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 border-b-gray-300">
+      <span class="px-3 py-2 text-white capitalize bg-green-500 rounded max-sm:font-medium max-sm:w-full">Order id: {{
+        item.id }}</span>
+      <p class="px-1 py-2 text-white capitalize bg-yellow-500 rounded me-6">
+        Date :<span>
+          {{ item.updatedAt | date : "short" }}</span>
+      </p>
+
+      <p class="px-3 py-2 text-white capitalize bg-blue-500 rounded">
+        Payment Method :
+        <span class="">{{
+          item.paymentMethodType
+          }}</span>
+      </p>
+
+    </div>
+  </h2>
+  <div>
+    <div class="p-2 border border-b-0 border-gray-200 dark:border-gray-700">
+      @for (CartItems of item.cartItems; track CartItems._id) {
+      <div
+        class="flex flex-wrap justify-between p-5 mb-2 bg-gray-200 border-b border-gray-200 rounded max-md:flex-col dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-600 border-b-gray-300 cart-product">
+        <div class="flex flex-wrap text-center capitalize max-md:flex-col dark:text-yellow-200 text-slate-900">
+          <img [src]="CartItems.product.imageCover" class="h-[100px] object-contain" alt="" />
+          <div class="sm:ms-4">
+            <p class="font-medium dark:text-white">
+              {{ CartItems.product.title }}
+            </p>
+            <p>
+              Category:
+              <span class="text-green-600 dark:text-white">{{
+                CartItems.product.category.name
+                }}</span>
+            </p>
+
+            <p>
+              Brand:
+              <span class="text-green-600 dark:text-white">{{
+                CartItems.product.brand.name
+                }}</span>
+            </p>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col p-2 text-center  rounded sm:justify-between dark:bg-slate-700 w-[200px] text-white">
+          <span class="text-black">Piece Price : <span class="text-green-600">{{ CartItems.price| currency : "EGP" }}</span> </span>
+          <span class="text-black">Count : <span class="text-green-600">{{ CartItems.count }}</span></span>
+          <span class="text-black ">Toatal Price :<span class="text-green-600">{{ CartItems.count * CartItems.price | currency : "EGP" }} </span></span>
+        </div>
+      </div>
+
+
+      }
+      <p class="px-3 py-2 text-center text-gray-500 rounded">
+        Total Order Price: :
+        <span class="text-green-500 ms-2">
+          {{ item.totalOrderPrice | currency : "EGP" }}
+        </span>
+      </p>
+    </div>
+  </div>
+  }
+</div>

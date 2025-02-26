@@ -1,0 +1,79 @@
+<div class="w-9/12 mx-auto my-14">
+    <form [formGroup]="loginform" (ngSubmit)="LoginSubmit()">
+
+        @if (errorMsg.length>0) {
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            <span class="font-medium">{{errorMsg}}</span>
+        </div>
+        }
+
+
+
+        <div class="alert alert-danger">
+            <div class="mb-6">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email
+                    address</label>
+                <input type="email" formControlName="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                    placeholder="john.doe@company.com" required />
+                @if (loginform.get('email')?.errors && loginform.get('email')?.touched) {
+                @if (loginform.get('email')?.getError('required')) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <span class="font-medium"></span> The Email Is required
+                </div>
+
+                }
+                @else if (loginform.get('email')?.getError('email')) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <span class="font-medium"></span> The Email is not valid
+                </div>
+                }
+                }
+            </div>
+
+            <div class="mb-6">
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                <input type="text" formControlName="password"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-green-500 dark:focus:border-green-500"
+                    placeholder="•••••••••" required />
+                @if ((loginform.get('password')?.errors && loginform.get('password')?.touched)) {
+                @if (loginform.get('password')?.getError('required')) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <span class="font-medium"></span> The password is required
+                </div>
+                }
+                @else if (loginform.get('password')?.getError('pattern')) {
+                <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                    role="alert">
+                    <span class="font-medium"></span> The Password must be at least 8 characters
+                </div>
+                }
+
+                }
+            </div>
+            <div class="flex items-center justify-end gap-4">
+                <a routerLink="/Forget"
+                    class="text-black my-4 cursor-pointer hover:underline  font-medium text-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 rounded-full p-3      ">
+                    ForgetPassword ?
+                    @if(isLoading)
+                    {
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    }
+                </a>
+
+                <button [disabled]="loginform.invalid" type="submit"
+                    class="text-white my-4 cursor-pointer bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 rounded-full p-3 disabled:cursor-not-allowed disabled:bg-green-200 ">Login
+                    @if(isLoading)
+                    {
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    }</button>
+
+            </div>
+        </div>
+
+    </form>
+
+</div>
